@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anjali Anand — Software Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #1a2d42;
+    --navy-light: #243b55;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --cream: #f4f0e8;
+    --cream-dark: #e8e2d4;
+    --white: #ffffff;
+    --text-muted: #8a9bb0;
+    --border: rgba(201,168,76,0.2);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--cream);
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 5%;
+    background: rgba(13,27,42,0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    animation: fadeDown 0.8s ease both;
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.25s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* SECTIONS */
+  section { padding: 7rem 10%; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 6rem;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 80% 50%, rgba(201,168,76,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 80% at 10% 80%, rgba(36,59,85,0.5) 0%, transparent 70%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: linear-gradient(var(--cream) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--cream) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content { position: relative; max-width: 800px; }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s 0.35s ease both;
+  }
+  .hero-name em {
+    color: var(--gold);
+    font-style: italic;
+  }
+  .hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 520px;
+    margin-bottom: 3rem;
+    font-weight: 300;
+    animation: fadeUp 0.8s 0.5s ease both;
+  }
+  .hero-cta {
+    display: flex; gap: 1.2rem; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.65s ease both;
+  }
+  .btn {
+    padding: 0.85rem 2rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.25s;
+    display: inline-block;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    border: 2px solid var(--gold);
+  }
+  .btn-primary:hover { background: var(--gold-light); border-color: var(--gold-light); }
+  .btn-outline {
+    background: transparent;
+    color: var(--cream);
+    border: 2px solid rgba(244,240,232,0.25);
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 10%;
+    display: flex; align-items: center; gap: 0.75rem;
+    color: var(--text-muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    animation: fadeUp 0.8s 1s ease both;
+  }
+  .scroll-line {
+    width: 40px; height: 1px; background: var(--gold); opacity: 0.5;
+    animation: pulse 2s infinite;
+  }
+
+  /* SECTION HEADER */
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--white);
+    margin-bottom: 1rem;
+    line-height: 1.15;
+  }
+  .section-divider {
+    width: 60px; height: 2px; background: var(--gold); margin-bottom: 3rem;
+  }
+
+  /* ABOUT */
+  #about { background: var(--navy-mid); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--text-muted);
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+  .about-text p:first-of-type { font-size: 1.1rem; color: var(--cream); }
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2.5rem;
+  }
+  .stat {
+    border-left: 2px solid var(--gold);
+    padding-left: 1.2rem;
+  }
+  .stat-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* SKILLS */
+  #skills { background: var(--navy); }
+  .skills-columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+  .skill-group {
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .skill-group:hover { border-color: rgba(201,168,76,0.5); transform: translateY(-4px); }
+  .skill-group-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .skill-item {
+    display: flex; align-items: center; gap: 0.6rem;
+    margin-bottom: 0.7rem;
+    font-size: 0.9rem;
+    color: var(--cream-dark);
+  }
+  .skill-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--gold); flex-shrink: 0;
+  }
+
+  /* PROJECTS */
+  #projects { background: var(--navy-mid); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  .project-card {
+    background: var(--navy);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2.2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .project-card:hover { border-color: rgba(201,168,76,0.5); transform: translateY(-5px); }
+  .project-card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .project-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 5rem;
+    color: rgba(201,168,76,0.08);
+    position: absolute;
+    top: 1rem; right: 1.5rem;
+    line-height: 1;
+  }
+  .project-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex; gap: 0.75rem;
+  }
+  .project-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    color: var(--white);
+    margin-bottom: 0.8rem;
+    line-height: 1.2;
+  }
+  .project-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .project-tech {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .tech-badge {
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.25);
+    color: var(--gold-light);
+    font-size: 0.72rem;
+    font-family: 'DM Mono', monospace;
+    padding: 0.25rem 0.75rem;
+    border-radius: 3px;
+  }
+  .project-links { display: flex; gap: 1rem; }
+  .project-link {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--gold);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .project-link:hover { color: var(--gold-light); }
+  .project-visual {
+    background: linear-gradient(135deg, var(--navy-light), var(--navy-mid));
+    border-radius: 6px;
+    aspect-ratio: 16/10;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .visual-code {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: rgba(201,168,76,0.6);
+    padding: 1.5rem;
+    line-height: 1.8;
+    width: 100%;
+  }
+
+  /* CONTACT */
+  #contact {
+    background: var(--navy);
+    text-align: center;
+  }
+  .contact-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .contact-email {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    color: var(--gold);
+    text-decoration: none;
+    display: block;
+    margin: 2rem 0 3rem;
+    transition: color 0.2s;
+  }
+  .contact-email:hover { color: var(--gold-light); }
+  .social-links {
+    display: flex; justify-content: center; gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  .social-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.25s;
+  }
+  .social-link:hover { color: var(--gold); }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.5; } 50% { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    section { padding: 5rem 6%; }
+    .about-grid, .projects-grid, .skills-columns { grid-template-columns: 1fr; }
+    .project-card.featured { grid-column: 1; grid-template-columns: 1fr; }
+    .project-visual { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">AA.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">// Software Developer</p>
+    <h1 class="hero-name">Anjali <em>Anand</em></h1>
+    <p class="hero-subtitle">CSE student at Lakshmi Narain College of Technology with a 8.17 CGPA — passionate about building responsive web apps and eager to grow through real-world opportunities.</p>
+    <div class="hero-cta">
+      <a href="resume.pdf" download class="btn btn-primary">Download Resume ↓</a>
+      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll to explore
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="reveal">
+    <p class="section-tag">// 01 — About Me</p>
+    <h2 class="section-title">Building Software<br>That Matters</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>I'm Anjali Anand, a 3rd year Computer Science student at Lakshmi Narain College of Technology with an 8.17 CGPA. I'm seeking an opportunity to apply my technical knowledge, contribute to real projects, and gain valuable industry exposure.</p>
+      <p>I completed a Web Development internship at Cognifyz Technology (Oct–Nov 2025), where I built responsive web interfaces, integrated APIs, and collaborated with teams using Git and project management tools.</p>
+      <p>I thrive in environments that promote learning, collaboration, and continuous improvement — and I love turning ideas into functional, clean software.</p>
+    </div>
+    <div>
+      <div class="about-stats">
+        <div class="stat">
+          <div class="stat-number">8.17</div>
+          <div class="stat-label">CGPA</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">3rd</div>
+          <div class="stat-label">Year CSE</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="reveal">
+    <p class="section-tag">// 02 — Skills</p>
+    <h2 class="section-title">Technologies &<br>Expertise</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="skills-columns">
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Frontend</div>
+      <div class="skill-item"><div class="skill-dot"></div> HTML5 / CSS3</div>
+      <div class="skill-item"><div class="skill-dot"></div> JavaScript (ES6+)</div>
+      <div class="skill-item"><div class="skill-dot"></div> React</div>
+      <div class="skill-item"><div class="skill-dot"></div> Tailwind CSS</div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Backend</div>
+      <div class="skill-item"><div class="skill-dot"></div> Java & Spring Boot</div>
+      <div class="skill-item"><div class="skill-dot"></div> Node.js</div>
+      <div class="skill-item"><div class="skill-dot"></div> REST APIs</div>
+      <div class="skill-item"><div class="skill-dot"></div> MySQL</div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Tools</div>
+      <div class="skill-item"><div class="skill-dot"></div> Git</div>
+      <div class="skill-item"><div class="skill-dot"></div> GitHub</div>
+      <div class="skill-item"><div class="skill-dot"></div> Basic Deployment</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- PROJECTS -->
+<section id="projects" style="background: var(--navy-mid);">
+  <div class="reveal">
+    <p class="section-tag">// 03 — Projects</p>
+    <h2 class="section-title">What I've Built</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="projects-grid reveal">
+    <div class="project-card">
+      <div class="project-number">01</div>
+      <div class="project-tag"><span>Web App</span></div>
+      <h3 class="project-name">Hostel/Mess Complaint Management</h3>
+      <p class="project-desc">A web-based platform for hostellers to submit complaints, track progress, and ensure they are resolved within defined SLA timelines with full accountability.</p>
+      <div class="project-tech">
+        <span class="tech-badge">HTML/CSS</span>
+        <span class="tech-badge">JavaScript</span>
+        <span class="tech-badge">Java</span>
+        <span class="tech-badge">REST API</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-number">02</div>
+      <div class="project-tag"><span>Clone Project</span></div>
+      <h3 class="project-name">Spotify Clone</h3>
+      <p class="project-desc">Built a Spotify Clone with music playback functionality, playlist browsing, and responsive UI using modern web technologies for a smooth user experience.</p>
+      <div class="project-tech">
+        <span class="tech-badge">HTML/CSS</span>
+        <span class="tech-badge">JavaScript</span>
+        <span class="tech-badge">React</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE & CERTIFICATIONS -->
+<section id="experience" style="background: var(--navy);">
+  <div class="reveal">
+    <p class="section-tag">// 04 — Experience & Certs</p>
+    <h2 class="section-title">Experience &<br>Certifications</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;" class="reveal">
+    <div>
+      <h3 style="font-family:'DM Serif Display',serif; color:var(--gold); font-size:1.3rem; margin-bottom:1.5rem;">Internship</h3>
+      <div style="border-left: 2px solid var(--border); padding-left: 1.5rem;">
+        <div style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--gold); letter-spacing:0.12em; margin-bottom:0.4rem;">OCT 2025 — NOV 2025</div>
+        <div style="font-size:1.05rem; color:var(--white); font-weight:600; margin-bottom:0.3rem;">Web Development Intern</div>
+        <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.8rem;">Cognifyz Technology</div>
+        <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.7;">Built responsive web interfaces, integrated APIs, and collaborated with teams using Git and project management tools. Gained hands-on experience in HTML, CSS, JavaScript, and deployment workflows.</p>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-family:'DM Serif Display',serif; color:var(--gold); font-size:1.3rem; margin-bottom:1.5rem;">Certifications</h3>
+      <div style="display:flex; flex-direction:column; gap:0.7rem;">
+        <div class="skill-item"><div class="skill-dot"></div> Introduction to IoT and Digital Transformation</div>
+        <div class="skill-item"><div class="skill-dot"></div> Google UX Design Professional Certificate — Coursera</div>
+        <div class="skill-item"><div class="skill-dot"></div> TCS iON Career Edge — Young Professional</div>
+        <div class="skill-item"><div class="skill-dot"></div> Goldman Sachs — Operations Job Simulation (Forage)</div>
+        <div class="skill-item"><div class="skill-dot"></div> AWS — Solutions Architecture Job Simulation (Forage)</div>
+        <div class="skill-item"><div class="skill-dot"></div> Data Structures & Backend Dev with Java — Coursera</div>
+        <div class="skill-item"><div class="skill-dot"></div> Introduction to Software Engineering — IBM</div>
+        <div class="skill-item"><div class="skill-dot"></div> Deloitte Australia — Cyber Job Simulation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrapper reveal">
+    <p class="section-tag">// 05 — Contact</p>
+    <h2 class="section-title">Let's Work Together</h2>
+    <div class="section-divider" style="margin: 1rem auto 0;"></div>
+    <p style="color: var(--text-muted); margin: 1.5rem 0 0; font-size: 1rem;">
+      Whether you have a project in mind, a role to fill, or just want to talk shop — my inbox is always open.
+    </p>
+    <a href="/cdn-cgi/l/email-protection#09686763686560686768676d6d7b6d73496e64686065276a6664" class="contact-email"><span class="__cf_email__" data-cfemail="8eefe0e4efe2e7efe0efe0eaeafceaf4cee9e3efe7e2a0ede1e3">[email&#160;protected]</span></a>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/anjali-anand-2514b62a0/" target="_blank" class="social-link">LinkedIn ↗</a>
+      <a href="https://github.com/Anjaliianand" target="_blank" class="social-link">GitHub ↗</a>
+      <a href="resume.pdf" download class="social-link">Resume ↓</a>
+    </div>
+    <a href="/cdn-cgi/l/email-protection#fd9c93979c91949c939c9399998f9987bd9a909c9491d39e9290" class="btn btn-primary">Say Hello →</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Anjali Anand — Built with precision & care</p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // S
